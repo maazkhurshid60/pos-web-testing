@@ -34,7 +34,7 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = "1611167139";
+    var serviceWorkerVersion = "2861798387";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
@@ -43,6 +43,8 @@
   </script>
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-messaging.js"></script>
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
@@ -53,15 +55,16 @@
   
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    
     const firebaseConfig = {
-      apiKey: "AIzaSyAEtP6upKAep0-NRnC_PgteFRp4Lj-pZXQ",
-      authDomain: "owners-pos.firebaseapp.com",
-      projectId: "owners-pos",
-      storageBucket: "owners-pos.appspot.com",
-      messagingSenderId: "242000206441",
-      appId: "1:242000206441:web:a0de92ada662ffb7aea0f8",
-      measurementId: "G-0TP3D9YL87"
-    };
+      apiKey: 'AIzaSyBod8_-pXOgFi4OcmtM83JZLhYz92fAhEM',
+    appId: '1:905646809594:web:e51c97929896a01c118443',
+    messagingSenderId: '905646809594',
+    projectId: 'ownerspos',
+    authDomain: 'ownerspos.firebaseapp.com',
+    storageBucket: 'ownerspos.appspot.com',
+    measurementId: 'G-SWVDHWRZ27',
+};
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -71,13 +74,18 @@
 <body>
   <script>
     window.addEventListener('load', function(ev) {
+      navigator.serviceWorker.register("/firebase-messaging-sw.js");
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
+        // serviceWorker: {
+        //   serviceWorkerVersion: serviceWorkerVersion,
+        // }
       }).then(function(engineInitializer) {
-        return engineInitializer.initializeEngine();
+        return engineInitializer.initializeEngine(
+          {
+            useColorEmoji:true
+          }
+        );
       }).then(function(appRunner) {
         return appRunner.runApp();
       });
